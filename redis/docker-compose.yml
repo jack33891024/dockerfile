@@ -1,0 +1,16 @@
+version: '2'
+services:
+  redis:
+    image: redis:4.0.12
+    container_name: golang-redis
+    restart: always
+#    network_mode: "host"
+    ports:
+      - 0.0.0.0:6379:6379
+    volumes:
+      - ./data:/data
+      - ./conf/redis.conf:/data/redis.conf
+    entrypoint:
+      - redis-server
+      - /data/redis.conf
+
